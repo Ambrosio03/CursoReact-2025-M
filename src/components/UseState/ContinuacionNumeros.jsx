@@ -11,9 +11,6 @@ const ContinuacionNumeros = () => {
     <div>
         <button className='bg-slate-400 rounded mb-2 mx-2' onClick={handlerAdd}>Añade el siguiente numero</button>
     </div>
-
-    // crea una funcion que añada el numero siguiente a mi array de numeros(y hay k ordenarlos)
-
    
   )
 }
