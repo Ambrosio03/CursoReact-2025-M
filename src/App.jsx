@@ -1,6 +1,8 @@
 import Contador from "./components/UseState/Contador"
 import ContadorDoble from "./components/UseState/ContadorDoble"
 import ContinuacionNumeros from "./components/UseState/ContinuacionNumeros"
+import GuitarHeroe from "./components/UseState/GuitarHeroe"
+import RegistrarFormulario from "./components/UseState/RegistrarFormulario"
 
 
 const App = () => {
@@ -12,6 +14,10 @@ const App = () => {
       <ContadorDoble/>
       <hr></hr>
       <ContinuacionNumeros/>
+      <hr className="mt-10"></hr>
+      <RegistrarFormulario/>
+      <hr className="mt-10"></hr>
+      <GuitarHeroe/>
     </>
   )
 }
