@@ -1,4 +1,3 @@
-import React from 'react'
 
 const CardGuitar = ({guitar}) => {
     const {name, type, price, image} = guitar;

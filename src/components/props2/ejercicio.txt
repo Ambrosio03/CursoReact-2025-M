@@ -1,0 +1,14 @@
+
+PAnel de administracion 
+
+en una nueva carpeta que se va llamar useEffect
+
+-> gestUser
+
+-> data/db.json { username,email,password}
+
+    -> navUser
+
+    -> main
+
+
