@@ -1,0 +1,19 @@
+{
+    "users": [
+      { "username": "john_doe", "email": "john.doe@example.com", "password": "john1234" },
+      { "username": "jane_smith", "email": "jane.smith@example.com", "password": "jane1234" },
+      { "username": "michael_brown", "email": "michael.brown@example.com", "password": "michael1234" },
+      { "username": "emily_davis", "email": "emily.davis@example.com", "password": "emily1234" },
+      { "username": "david_wilson", "email": "david.wilson@example.com", "password": "david1234" },
+      { "username": "sarah_moore", "email": "sarah.moore@example.com", "password": "sarah1234" },
+      { "username": "chris_jackson", "email": "chris.jackson@example.com", "password": "chris1234" },
+      { "username": "amanda_white", "email": "amanda.white@example.com", "password": "amanda1234" },
+      { "username": "joshua_harris", "email": "joshua.harris@example.com", "password": "joshua1234" },
+      { "username": "megan_martin", "email": "megan.martin@example.com", "password": "megan1234" },
+      { "username": "daniel_thompson", "email": "daniel.thompson@example.com", "password": "daniel1234" },
+      { "username": "laura_garcia", "email": "laura.garcia@example.com", "password": "laura1234" },
+      { "username": "matthew_martinez", "email": "matthew.martinez@example.com", "password": "matthew1234" },
+      { "username": "olivia_rodriguez", "email": "olivia.rodriguez@example.com", "password": "olivia1234" },
+      { "username": "james_lee", "email": "james.lee@example.com", "password": "james1234" }
+    ]
+  }
