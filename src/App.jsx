@@ -9,6 +9,8 @@ import Hijo2 from "./components/props2/Hijo2"
 import Nieto2 from "./components/props2/Nieto2"
 import Padre2 from "./components/props2/Padre2"
 import GestUser from "./components/useEffect/gestUser"
+import Main1 from "./components/useEffect/Main1"
+import NavUser from "./components/useEffect/NavUser"
 import Timer from "./components/useEffectCicloVida/Timer"
 import UsersPlaceholder from "./components/useEffectCicloVida/UsersPlaceholder"
 
@@ -26,7 +28,11 @@ const App = () => {
       <RegistrarFormulario/>
       <hr className="mt-10"></hr>
       <GuitarHeroe/> */}
-      <UsersPlaceholder/>
+      {/* <UsersPlaceholder/> */}
+      <GestUser>
+        <NavUser/>
+        <Main1/>
+      </GestUser>
     </>
   )
 }
