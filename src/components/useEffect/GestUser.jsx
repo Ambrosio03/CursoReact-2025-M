@@ -1,8 +1,9 @@
-import React from 'react'
 
-const GestUser = () => {
+const GestUser = (props) => {
   return (
-    <div>gestUser</div>
+    <div>
+      {props.children}
+    </div>
   )
 }
 

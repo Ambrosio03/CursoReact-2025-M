@@ -14,7 +14,7 @@ const ProductList = () => {
                 throw new Error("Algo salio mal");
             }
 
-            setProductos(await response.json());
+            setProductos  (await response.json());
         }catch(error){
             console.log("Error", error);
         }
