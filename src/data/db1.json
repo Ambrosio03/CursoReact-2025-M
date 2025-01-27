@@ -1,5 +1,4 @@
-{
-  "products": [
+[
     { "id": 1, "name": "JavaScript: The Good Parts", "price": 29.99, "tags": ["JavaScript"], "img": "javascript_good_parts.jpg" },
     { "id": 2, "name": "Eloquent JavaScript", "price": 25.99, "tags": ["JavaScript"], "img": "eloquent_javascript.jpg" },
     { "id": 3, "name": "You Don't Know JS", "price": 34.99, "tags": ["JavaScript"], "img": "you_dont_know_js.jpg" },
@@ -10,6 +9,6 @@
     { "id": 8, "name": "Fluent Python", "price": 49.99, "tags": ["Python"], "img": "fluent_python.jpg" },
     { "id": 9, "name": "Clean Code", "price": 32.99, "tags": ["Java"], "img": "clean_code.jpg" },
     { "id": 10, "name": "Effective Java", "price": 39.99, "tags": ["Java"], "img": "effective_java.jpg" }
-  ]
-}
+]
+
 

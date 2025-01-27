@@ -10,8 +10,7 @@ const Main1 = () => {
       if (!response.ok) {
         throw new Error("Algo salió mal");
       }
-      const data = await response.json();
-      setUsers(data.users); // Accede a la propiedad `users`
+      setUsers(await response.json());
     } catch (error) {
       console.log("Error", error);
     }
@@ -23,7 +22,7 @@ const Main1 = () => {
 
   return (
     <div className="flex flex-wrap gap-4 justify-center">
-      {Array.isArray(users) && users.map((user, index) => (
+      {users.map((user, index) => (
         <UserCard key={index} user={user} />
       ))}
     </div>

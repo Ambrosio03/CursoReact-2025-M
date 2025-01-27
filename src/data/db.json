@@ -1,5 +1,4 @@
-{
-    "users": [
+[
       { "username": "john_doe", "email": "john.doe@example.com", "password": "john1234" },
       { "username": "jane_smith", "email": "jane.smith@example.com", "password": "jane1234" },
       { "username": "michael_brown", "email": "michael.brown@example.com", "password": "michael1234" },
@@ -15,5 +14,4 @@
       { "username": "matthew_martinez", "email": "matthew.martinez@example.com", "password": "matthew1234" },
       { "username": "olivia_rodriguez", "email": "olivia.rodriguez@example.com", "password": "olivia1234" },
       { "username": "james_lee", "email": "james.lee@example.com", "password": "james1234" }
-    ]
-  }
+]
