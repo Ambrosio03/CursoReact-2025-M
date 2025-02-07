@@ -1,50 +1,72 @@
 import { useState } from "react";
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
+import { useFetch } from "../hooks/useFetch";
+import { getPopularMovies } from "../services/tmdb";
+import MovieCard from "../components/MovieCard";
 
 
 
 const Home = () => {
-    const api_token = import.meta.env.VITE_API_TOKEN;
-    const [movies, setMovies] = useState([]);
-
-    const fetching = async () => {
-        const response = await fetch(`https://api.thmoviedb.otg/3/movie/popular?api key=${api_token}`);
-        if(!response.ok){
-            throw new Error(`Error al obtener los datos: ${response.status}`);
-        }
-        const data = await response.json();
-        setMovies(data.result)
-
+    //estado para el numero de paginas
+    const [page, setPage] = useState(1);
+    //me traigo la data
+    const {data, error, isLoading} = useFetch(()=>getPopularMovies(page), [page])
+    
+    const handlePageChange = (newPage) => {
+        window.scrollTo( {top:0, behavior: "smooth"})
+        setPage(newPage)
     }
-    useEffect(() => {
-        fetching()
-    }, [])
+    
+
+    //cada vez que cambie la pagina, se actualiza el estado
+
+    //si hay error cargando??
+    if(error){
+        return <div className="text-center">
+            <h2 className=" text-red-600 font-bold text-2xl">Error</h2>
+            <p className="text-2xl font-medium">{error.message}</p>
+            <Link to='/' className="text-blue-600">Volver</Link>
+        </div>
+    }
   return (
     <div className="space-y-8">
         <header className="text-center">
-            <h1 className="text-4xl font-bold text-sky-950">
-                Bienvenido a mi Movie App
-            </h1>
-            <p className="mt-2  text-gray-600">
-                La mejor aplicacion para buscar peliculas y leer reseñas
-            </p>
+        <h1 className="text-4xl font-bold text-sky-950">Bienvenido al VideoClub</h1>
+        <p className="text-lg font-medium text-sky-900 mt-2">
+            Descubre las peliculas mas populares del momento
+        </p>
         </header>
-        <section>
-            <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold" >
-                    Peliculas populares
-                </h2>
-                <Link to="/movies" className="text-sky-900 hover:underline">Ver todas</Link>
+        <section >
+            <h2 className="text-2xl font-bold text-sky-950 mb-10">Peliculas Populares</h2>
+            {isLoading ? (<div>Cargando peliculas</div>) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                    {data?.results.map((movie,index) => (
+                        // aqui va el componente movie card
+                        <MovieCard key={index} movie={movie} />
+                    ))}
+                </div>
+            )}
+            <div className="flex justify-center gap-2">
+                <button 
+                onClick={() =>handlePageChange(page-1)}
+                disabled={page ===1}
+                className="px-4 py-2 rounded-lg transition-colors duration-200 bg-sky-800 hover:bg-sky-950 text-white">
+                    anterior
+                </button>
+                <span>
+
+                </span>
+                <button 
+                onClick={() =>handlePageChange(page+1)}
+                disabled={page === data?.total_pages}
+                className="px-4 py-2 rounded-lg transition-colors duration-200 bg-sky-800 hover:bg-sky-950 text-white" >
+                    siguiente
+                </button>
+
             </div>
+
         </section>
-        {/* Grid con las peliculas */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {/* Aqui pintaran las peliculas */}
-            {movies?.map((movie) => (
-                <MovieCard key={movie.id} movie={movie}/>
-            ))}
-        </div>
     </div>
   )
 }
