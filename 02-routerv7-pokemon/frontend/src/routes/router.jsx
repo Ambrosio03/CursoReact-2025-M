@@ -31,8 +31,14 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.POKEMONS_DETAIL,
                 element: <PokemonDetailsPage />,
-                //loader:  permite hacer fetch directamente en la ruta
                 errorElement: <ErrorPage/>,
+                loader: async ({params}) => {
+                    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.name}`);
+                    if(!response.ok){
+                        throw new Error("Pokemon no encontrado")
+                    }
+                    return response.json();
+                }
             },
             {
                 path: ROUTES.ABOUT,

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import { usePokemon } from "../context/PokemonContext";
 
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const {addToFavorites} = usePokemon();
 
   useEffect(() => {
     fetchPokemons();
@@ -36,7 +39,7 @@ const Home = () => {
     }
   }
   if(isLoading){
-    return <div>Loading...</div>
+    return <div className="flex justify-center items-center h-screen"><Spinner/></div>
   }
   return (
     <div className="container mx-auto p-4">
@@ -45,7 +48,7 @@ const Home = () => {
         {pokemons.map((pokemon) => (
           <div key={pokemon.id} className="bg-gray-200 p-4 mb-4 rounded-lg">
             <div className="relative group">
-            <img src={pokemon.sprites.front_default} alt={pokemon.name} 
+            <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} 
                className="w-32 mx-auto transition-transform duration-500 transform hover:scale-110"
             />
             </div>
@@ -54,6 +57,7 @@ const Home = () => {
               {/* Aqui van los botones */}
               <button className="bg-blue-500 text-white px-4 py-2 rounded-lg"
               // accion boton
+              onClick={()=>addToFavorites(pokemon)}
               >
                 Añadir a favoritos
               </button>
