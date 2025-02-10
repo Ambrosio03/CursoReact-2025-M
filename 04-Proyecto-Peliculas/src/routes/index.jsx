@@ -4,9 +4,9 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import MovieDetail from "../pages/MovieDetail";
 import MovieList from "../pages/MovieList";
-// import Search from "../pages/Search";
-// import Reviews from "../pages/Reviews";
-// import Favorites from "../pages/Favorites";
+import Search from "../pages/Search";
+import Reviews from "../pages/Reviews";
+import Favorites from "../pages/Favorites";
 
 
 export const router = createBrowserRouter([
@@ -27,19 +27,19 @@ export const router = createBrowserRouter([
             {
                 path:"movies/:id",
                 element: <MovieDetail/>,
+            },
+            {
+                path:"search",
+                element: <Search/>
+            },
+            {
+                path:"reviews",
+                element:<Reviews/>
+            },
+            {
+                path:"favorites",
+                element:<Favorites/>
             }
-            // {
-            //     path:"search",
-            //     element: <Search/>
-            // },
-            // {
-            //     path:"reviews",
-            //     element:<Reviews/>
-            // },
-            // {
-            //     path:"favorites",
-            //     element:<Favorites/>
-            // }
         ]
     }
 ])

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useFetch } from "../hooks/useFetch";
 import { getPopularMovies } from "../services/tmdb";
 import MovieCard from "../components/MovieCard";
+import Spinner from "../components/Spinner";
 
 
 
@@ -18,10 +18,6 @@ const Home = () => {
         setPage(newPage)
     }
     
-
-    //cada vez que cambie la pagina, se actualiza el estado
-
-    //si hay error cargando??
     if(error){
         return <div className="text-center">
             <h2 className=" text-red-600 font-bold text-2xl">Error</h2>
@@ -39,10 +35,9 @@ const Home = () => {
         </header>
         <section >
             <h2 className="text-2xl font-bold text-sky-950 mb-10">Peliculas Populares</h2>
-            {isLoading ? (<div>Cargando peliculas</div>) : (
+            {isLoading ? (<Spinner/>) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                     {data?.results.map((movie,index) => (
-                        // aqui va el componente movie card
                         <MovieCard key={index} movie={movie} />
                     ))}
                 </div>
@@ -55,7 +50,7 @@ const Home = () => {
                     anterior
                 </button>
                 <span>
-
+                    {page} / {data?.total_pages}
                 </span>
                 <button 
                 onClick={() =>handlePageChange(page+1)}
