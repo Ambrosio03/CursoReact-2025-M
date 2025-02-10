@@ -1,9 +1,48 @@
-
+import { useEffect, useState } from "react";
+import ReviewItem from "../components/ReviewItem";
+import { getMovieDetails } from "../services/tmdb"; // Asegúrate de importar la función correcta
 
 const Reviews = () => {
-  return (
-    <div>Reviews</div>
-  )
-}
+  const [reviews, setReviews] = useState([]);
+  const [movies, setMovies] = useState({}); // Estado para almacenar títulos de películas por ID
 
-export default Reviews
+  useEffect(() => {
+    const storedReviews = localStorage.getItem("reseñas");
+    if (storedReviews) {
+      const parsedReviews = JSON.parse(storedReviews);
+      setReviews(parsedReviews);
+
+      // Obtener los títulos de las películas
+      parsedReviews.forEach(async (review) => {
+        if (!movies[review.movieId]) {
+          const movieData = await getMovieDetails(review.movieId);
+          setMovies((prev) => ({ ...prev, [review.movieId]: movieData.title }));
+        }
+      });
+    }
+  }, []);
+
+  return (
+    <div>
+      <div>
+        <h2 className="text-4xl font-bold text-sky-950 mb-10">Mis películas favoritas</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+          {reviews.length > 0 ? 
+            reviews.map((review, index) => (
+              <ReviewItem 
+                key={index} 
+                texto={review.texto} 
+                calificacion={review.calificacion} 
+                movieTitle={movies[review.movieId] || "Cargando..."} // Mostrar el título si ya está disponible
+              />
+            ))
+            :
+            <p className="text-center text-sky-600">No tienes películas favoritas</p>
+          }
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Reviews;

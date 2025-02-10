@@ -1,12 +1,15 @@
 import { RouterProvider } from "react-router-dom"
 import { router } from "./routes"
 import { FavoritesProvider } from "./context/FAvoritesContext"
+import { ReseñasProvider } from "./context/reseñasContext"
 
 const App = () => {
   return (
     <>
       <FavoritesProvider>
-        <RouterProvider router={router}/>
+        <ReseñasProvider>
+            <RouterProvider router={router}/>
+        </ReseñasProvider>
       </FavoritesProvider>
     </>
   )
