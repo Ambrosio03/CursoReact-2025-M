@@ -15,7 +15,7 @@ export function FavoritesProvider({ children }) {
 
     const addToFavorites = (movie) => {
         if (favorites.some(m => m?.id === movie.id)) {
-            toast   .error("La película ya está en favoritos", {
+            toast.error("La película ya está en favoritos", {
                 style: {
                     background: 'red',
                     color: 'white',

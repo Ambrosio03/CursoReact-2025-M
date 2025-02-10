@@ -71,7 +71,7 @@ const CardDetail = () => {
           </div>
         )}
 
-        <FormReview id={id} />
+        <FormReview id={id}/>
         
       </div>
     </div>

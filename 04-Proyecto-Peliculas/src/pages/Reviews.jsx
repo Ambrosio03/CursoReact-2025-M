@@ -31,6 +31,7 @@ const Reviews = () => {
             reviews.map((review, index) => (
               <ReviewItem 
                 key={index} 
+                id= {review.id}
                 texto={review.texto} 
                 calificacion={review.calificacion} 
                 movieTitle={movies[review.movieId] || "Cargando..."} // Mostrar el título si ya está disponible
