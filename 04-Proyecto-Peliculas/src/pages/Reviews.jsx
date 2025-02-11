@@ -34,6 +34,7 @@ const Reviews = () => {
                 id= {review.id}
                 texto={review.texto} 
                 calificacion={review.calificacion} 
+                fecha={review.fecha}
                 movieTitle={movies[review.movieId] || "Cargando..."} // Mostrar el título si ya está disponible
               />
             ))

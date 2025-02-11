@@ -1,32 +1,23 @@
-import { useEffect, useState } from "react"
+import { useFavorites } from "../context/FavoritesContext";
 import MovieCard from "../components/MovieCard";
 
 const Favorites = () => {
-  const [moviesFav, setMoviesFav] = useState([]);
-  
-  useEffect(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setMoviesFav(JSON.parse(storedFavorites));
-    }
-  }, [])
-  
+  const { favorites } = useFavorites();
+
   return (
     <div>
-      <div>
-        <h2 className="text-4xl font-bold text-sky-950 mb-10">Mis peliculas favoritas</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-        {moviesFav.length > 0 ? 
-          moviesFav.map((movie, index) => (
-            <MovieCard key={index} movie={movie} />
+      <h2 className="text-4xl font-bold text-sky-950 mb-10">Mis películas favoritas</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+        {favorites.length > 0 ? (
+          favorites.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
           ))
-          :
-          <p className="text-center text-sky-600">No tienes peliculas favoritas</p>
-        }
-        </div>
+        ) : (
+          <p className="text-center text-sky-600">No tienes películas favoritas</p>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Favorites
+export default Favorites;

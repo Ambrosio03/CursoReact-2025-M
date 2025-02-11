@@ -3,15 +3,11 @@ import { getImageUrl } from "../services/tmdb";
 import { useFavorites } from "../context/FavoritesContext";
 
 const MovieCard = ({ movie }) => {
-  const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
+  const { isFavorite, addToFavorites, removeFromFavorites } = useFavorites();
   const rating = movie.vote_average ? movie.vote_average.toFixed(1) : "N/A";
 
-  const isFavorite = favorites.some((fav) => fav.id === movie.id); 
-
-  const handleToggleFavorite = (e) => {
-    e.preventDefault(); 
-
-    if (isFavorite) {
+  const handleFavorites = () => {
+    if (isFavorite(movie.id)) {
       removeFromFavorites(movie.id);
     } else {
       addToFavorites(movie);
@@ -19,14 +15,14 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-    <article className="relative bg-sky-600 rounded-lg transform transition-transform duration-300 hover:scale-105">
+    <article className="relative bg-white rounded-lg transform transition-transform duration-300 hover:scale-105 shadow-lg">
       <button
-        onClick={handleToggleFavorite}
+        onClick={handleFavorites}
         className={`absolute top-2 left-2 py-1 px-2 rounded-full z-10 ${
-          isFavorite ? "bg-red-400" : "bg-black bg-opacity-50"
+          isFavorite(movie.id) ? "bg-red-400" : "bg-black bg-opacity-50"
         } text-white`}
       >
-        {isFavorite ? "💔" : "♥️"} 
+        {isFavorite(movie.id) ? "💔" : "♥️"} 
       </button>
 
       <Link to={`/movies/${movie.id}`} className="block">
@@ -41,7 +37,7 @@ const MovieCard = ({ movie }) => {
           />
         </div>
         <div className="p-4">
-          <h3 className="font-bold text-lg line-clamp-2 text-white">{movie.title}</h3>
+          <h3 className="font-bold text-lg line-clamp-2 text-gray-500">{movie.title}</h3>
           <p className="text-sm text-gray-300">{movie.release_date}</p>
         </div>
       </Link>
