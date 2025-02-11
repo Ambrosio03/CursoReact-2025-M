@@ -5,7 +5,6 @@ const VITE_BASE_IMAGE_URL = import.meta.env.VITE_BASE_IMAGE_URL;
 
 //ojeto que me decide el tamañp de las imagenes
 export const IMAGES_SIZES = {
-
     POSTER:"w500",
     BACKDROP:"original",
 }
