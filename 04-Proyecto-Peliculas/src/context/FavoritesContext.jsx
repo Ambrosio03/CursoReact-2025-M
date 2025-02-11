@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 const FavoritesContext = createContext();
 
-export function FavoritesProvider({ children }) {
+export const FavoritesProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export function FavoritesProvider({ children }) {
         if (favorites.some(m => m?.id === movie.id)) {
             toast.error("La película ya está en favoritos", {
                 style: {
-                    background: 'red',
+                    background: 'yellow',
                     color: 'white',
                     border: "1px solid black",
                 },
@@ -32,7 +32,7 @@ export function FavoritesProvider({ children }) {
 
         toast.success("Película añadida a favoritos", {
             style: {
-                background: 'yellow',
+                background: 'green',
                 color: 'black',
                 border: "1px solid black",
             },
@@ -47,7 +47,7 @@ export function FavoritesProvider({ children }) {
 
         toast.success("Película eliminada de favoritos", {
             style: {
-                background: 'green',
+                background: 'red',
                 color: 'white',
                 border: "1px solid black",
             },
@@ -55,12 +55,21 @@ export function FavoritesProvider({ children }) {
         });
     };
 
+    const isFavorite = (movieId) => {
+        return favorites.some((movie) => movie.id === movieId);
+    };
+
     return (
-        <FavoritesContext.Provider value={{ favorites, addToFavorites, removeFromFavorites }}>
+        <FavoritesContext.Provider value={{ 
+            favorites, 
+            addToFavorites, 
+            removeFromFavorites, 
+            isFavorite 
+        }}>
             {children}
         </FavoritesContext.Provider>
     );
-}
+};
 
 export const useFavorites = () => {
     const context = useContext(FavoritesContext);

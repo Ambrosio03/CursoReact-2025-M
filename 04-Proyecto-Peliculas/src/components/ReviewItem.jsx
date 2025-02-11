@@ -1,10 +1,10 @@
 import { useReseñas } from "../context/reseñasContext";
 
-const ReviewItem = ({ id, texto, calificacion, movieTitle }) => {
+const ReviewItem = ({ id, texto, calificacion, movieTitle ,fecha}) => {
   const { removeReseña } = useReseñas();
 
   const removeReview = (id) => {
-    removeReseña(id); // Remove the review by its unique `id`
+    removeReseña(id);
   };
 
   return (
@@ -18,6 +18,7 @@ const ReviewItem = ({ id, texto, calificacion, movieTitle }) => {
       <h3 className="text-lg font-semibold">{movieTitle}</h3>
       <p className="text-gray-300 mt-2">{texto}</p>
       <p className="mt-2 font-bold">Calificación: {calificacion} ⭐</p>
+      <p className="text-gray-300 mt-2">Fecha: {fecha}</p>
     </div>
   );
 };

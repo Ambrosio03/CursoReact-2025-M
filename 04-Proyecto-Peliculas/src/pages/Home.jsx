@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import { useFetch } from "../hooks/useFetch";
 import { getPopularMovies } from "../services/tmdb";
@@ -50,7 +50,7 @@ const Home = () => {
                     anterior
                 </button>
                 <span>
-                    {page} / {data?.total_pages}
+                   Pagina {page} de {data?.total_pages}
                 </span>
                 <button 
                 onClick={() =>handlePageChange(page+1)}
