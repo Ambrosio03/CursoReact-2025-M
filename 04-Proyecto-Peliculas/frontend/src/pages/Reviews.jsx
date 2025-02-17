@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import ReviewItem from "../components/ReviewItem";
-import { getMovieDetails } from "../services/tmdb"; // Asegúrate de importar la función correcta
-
+import { getMovieDetails } from "../services/tmdb"; 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-  const [movies, setMovies] = useState({}); // Estado para almacenar títulos de películas por ID
+  const [movies, setMovies] = useState({}); 
 
   useEffect(() => {
     const storedReviews = localStorage.getItem("reseñas");
@@ -12,7 +11,7 @@ const Reviews = () => {
       const parsedReviews = JSON.parse(storedReviews);
       setReviews(parsedReviews);
 
-      // Obtener los títulos de las películas
+      
       parsedReviews.forEach(async (review) => {
         if (!movies[review.movieId]) {
           const movieData = await getMovieDetails(review.movieId);
@@ -25,7 +24,7 @@ const Reviews = () => {
   return (
     <div>
       <div>
-        <h2 className="text-4xl font-bold text-sky-950 mb-10">Mis películas favoritas</h2>
+        <h2 className="text-4xl font-bold text-sky-950 mb-10">Mis reseñas</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
           {reviews.length > 0 ? 
             reviews.map((review, index) => (
@@ -35,11 +34,11 @@ const Reviews = () => {
                 texto={review.texto} 
                 calificacion={review.calificacion} 
                 fecha={review.fecha}
-                movieTitle={movies[review.movieId] || "Cargando..."} // Mostrar el título si ya está disponible
+                movieTitle={movies[review.movieId] || "Cargando..."}
               />
             ))
             :
-            <p className="text-center text-sky-600">No tienes películas favoritas</p>
+            <p className="text-center text-sky-600">No tienes reseñas</p>
           }
         </div>
       </div>
