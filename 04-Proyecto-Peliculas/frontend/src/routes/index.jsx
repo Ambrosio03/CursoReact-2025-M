@@ -1,13 +1,15 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import RootLayout from "../layout/RootLayout";
+import AuthLayout from "../layout/AuthLayout";
 import ErrorPage from "../pages/ErrorPage";
-import Home from "../pages/Home";
 import MovieDetail from "../pages/MovieDetail";
 import MovieList from "../pages/MovieList";
 import Search from "../pages/Search";
 import Reviews from "../pages/Reviews";
+import Home from "../pages/Home";
 import Favorites from "../pages/Favorites";
-
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 
 export const router = createBrowserRouter([
     {
@@ -17,8 +19,11 @@ export const router = createBrowserRouter([
         children:[
             {
                 index: true,
+                element: <Navigate to="login" replace/>,
+            },
+            {
+                path:"home",
                 element: <Home/>,
-
             },
             {
                 path:"movies",
@@ -41,5 +46,25 @@ export const router = createBrowserRouter([
                 element:<Favorites/>
             }
         ]
+    },
+    {
+        path:"/login",
+        element: <AuthLayout/>,
+        children: [
+            {
+                index: true,
+                element: <LoginPage/>,
+            }
+        ]
+    },
+    {
+        path:"/register",
+        element: <AuthLayout/>,
+        children: [
+            {
+                index: true,
+                element: <RegisterPage/>,
+            }
+        ]
     }
-])
+]);

@@ -13,7 +13,7 @@ const FormReview = ({ id }) => {
         const formData = new FormData(e.target);
         const nuevaReseña = {
           id: Date.now(),
-          movieId: id, // Agregar el ID de la película
+          movieId: id, 
           texto: formData.get("reseña"),
           calificacion: formData.get("calificacion"),
         };

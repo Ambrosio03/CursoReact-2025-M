@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom"
 import { useFetch } from "../hooks/useFetch";
 import { getPopularMovies } from "../services/tmdb";
@@ -38,7 +38,7 @@ const Home = () => {
             {isLoading ? (<Spinner/>) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                     {data?.results.map((movie,index) => (
-                        <MovieCard key={index} movie={movie} />
+                        <MovieCard key={index} movie={movie}/>
                     ))}
                 </div>
             )}
